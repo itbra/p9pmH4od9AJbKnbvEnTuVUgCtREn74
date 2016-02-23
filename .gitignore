@@ -55,10 +55,11 @@ desktop.ini
 Thumbs.db
 thumbs.db
 
+# Linux #
+.directory
+*~
+
 # Never ignore #
 # Only apply this rule to the main repository's gitignore files
 !/.gitignore
 !/dist/.gitignore
-
-# IDE
-.idea
