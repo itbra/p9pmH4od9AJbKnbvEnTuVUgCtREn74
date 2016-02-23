@@ -1,12 +1,13 @@
 {
-	"name": "p9pmH4od9AJbKnbvEnTuVUgCtREn74",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"start": "node app.js"
-	},
-	"dependencies": {
-	},
-	"devDependencies": {
-	}
+  "name": "p9pmH4od9AJbKnbvEnTuVUgCtREn74",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "express-secure-handlebars": "^2.1.0"
+  },
+  "devDependencies": {}
 }
