@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
   res.render('listings', {
     title: 'Listings',
-    test: req.query.test || '-1'
+    showTests: req.query.test
   });
 
   next();
