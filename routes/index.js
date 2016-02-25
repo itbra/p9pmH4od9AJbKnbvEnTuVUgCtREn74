@@ -4,7 +4,7 @@ var express = require('express'),
     router  = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   //res.send('respond with a resource');
   res.render('index', {
     title: 'Home',
@@ -14,8 +14,6 @@ router.get('/', function(req, res, next) {
     test: req.query.test,
     pageTestScript: '/qa/tests-index.js'
   });
-
-  next();
 });
 
 module.exports = router;

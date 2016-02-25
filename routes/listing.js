@@ -5,7 +5,7 @@ var express = require('express'),
     dataProvider = require('../lib/dataprovider/listings.js');
 
 /* GET listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   var lid = req.query.id;
 
   //res.send('respond with a resource');
@@ -20,8 +20,6 @@ router.get('/', function(req, res, next) {
       listing: dataProvider.getListing(lid)
     }
   });
-
-  next();
 });
 
 module.exports = router;
