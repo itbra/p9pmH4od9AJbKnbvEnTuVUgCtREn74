@@ -1,19 +1,23 @@
-<h1>{{title}}<small>
-{{#if showTests}}
-   <a href="/listing">(hide tests)</a>
-{{else}}
-   <a href="/listing?test=1">(run tests)</a>
-{{/if}}
+<h1>{{this.title}}<small>
+   <a href="/listing{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop{{else}}start{{/if}} tests)</a>
 </small></h1>
 
-<p class="lead">Shows a listing's details</p>
+<code>url: {{this.url}}</code>
+<code>query: {{this.queryJSON}}</code>
+
+<p class="lead">{{#if this.data.listing}}Here come the details{{else}}Shows a listing's details.{{/if}}</p>
+
+{{#if this.data.listing}}
+<dl class="dl-horizontal">
+{{#each this.data.listing}}
+   <dt style="width:90px; text-align:left">{{@key}}:</dt>
+   <dd style="margin-left:1.5em">{{this}}</dd>
+{{/each}}
+</dl>
+{{/if}}
 
 <ul class="list-unstyled text-center">
    <li class="pull-left">
-   {{#if showTests}}
-      <a href="/listings?test=1">&laquo;Listings</a>
-   {{else}}
-      <a href="/listings">&laquo;Listings</a>
-   {{/if}}
+      <a href="/listings{{#if this.test}}?test={{this.test}}{{/if}}">&laquo;Listings</a>
    </li>
 </ul>

@@ -1,19 +1,33 @@
-<h1>{{title}}&nbsp;<small>
-{{#if showTests}}
-   <a href="/listings">(hide tests)</a>
-{{else}}
-   <a href="/listings?test=1">(run tests)</a>
-{{/if}}
+<h1>{{this.title}}&nbsp;<small>
+   <a href="/listings{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop{{else}}start{{/if}} tests)</a>
 </small></h1>
 
-<p class="lead">Shows a list of available items</p>
+<code>url: {{this.url}}</code>
+<code>query: {{this.queryJSON}}</code>
+
+<p class="lead">{{#if this.data.listings}}Here are your listings.{{else}}Shows a list of available items.{{/if}}</p>
+
+{{#if this.data.listings}}
+   <ul class="list-unstyled">
+   {{#with data}}
+
+   {{#unless debug}}
+   <!-- NOTE: context shift !!! To access 'this' in the root object we have to step up like with dir traversal: root/data/listings/listing -->
+   {{/unless}}
+
+   {{#each listings}}
+      <li>
+         <a href="/listing?id={{this.id}}{{#if ../../../test}}&test={{../../../test}}{{/if}}">{{this.title}}</a>
+      </li>
+   {{/each}}
+   {{/with}}
+   </ul>
+{{else}}
+   <p>No listings.</p>
+{{/if}}
 
 <ul class="list-unstyled text-center">
    <li class="pull-left">
-   {{#if showTests}}
-      <a href="/?test=1">&laquo;Home</a>
-   {{else}}
-      <a href="/">&laquo;Home</a>
-   {{/if}}
+      <a href="/{{#if this.test}}?test={{this.test}}{{/if}}">&laquo;Home</a>
    </li>
 </ul>

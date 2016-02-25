@@ -1,15 +1,24 @@
 "use strict";
 
 var express = require('express'),
-    router = express.Router();
+    router = express.Router(),
+    dataProvider = require('../lib/dataprovider/listings.js');
 
 /* GET listing. */
 router.get('/', function(req, res, next) {
+  var lid = req.query.id;
+
   //res.send('respond with a resource');
   res.render('listing', {
-    title: 'Listing' + (isNaN(req.query.id) ? '' : '#' + req.query.id),
+    title: 'Listing' + (isNaN(lid) ? '' : ' #' + lid),
+    url: req.url,
+    query: req.query,
+    queryJSON: JSON.stringify(req.query),
+    test: req.query.test,
     pageTestScript: '/qa/tests-listing.js',
-    showTests: req.query.test
+    data: {
+      listing: dataProvider.getListing(lid)
+    }
   });
 
   next();

@@ -7,9 +7,9 @@
           assert( $('a[href^="/"], a[href^="/?"]').length );
       });
 
-      /* test('has link to "Listing" page', function() {
+      test('has link to "Listing" page', function() {
           assert( $('a[href="/listing"], a[href^="/listing?"], a[href="/listing/"], a[href^="/listing/?"]').length );
-      }); */
+      });
 
   });
 }());

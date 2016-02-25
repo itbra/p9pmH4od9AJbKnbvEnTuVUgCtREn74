@@ -8,8 +8,11 @@ router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
   res.render('index', {
     title: 'Home',
-    pageTestScript: '/qa/tests-index.js',
-    showTests: req.query.test
+    url: req.url,
+    query: req.query,
+    queryJSON: JSON.stringify(req.query),
+    test: req.query.test,
+    pageTestScript: '/qa/tests-index.js'
   });
 
   next();

@@ -12,7 +12,7 @@ var listing  = require('./routes/listing');
 var app      = express();
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(function(req, res, next) {
-//  res.locals.showTests = app.get('env') !== 'production' && req.query.test == '1';
+//  res.locals.test = app.get('env') !== 'production' && req.query.test === '1';
 //});
 
 // view engine setup

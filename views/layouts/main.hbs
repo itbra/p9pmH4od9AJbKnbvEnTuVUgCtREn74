@@ -2,7 +2,13 @@
 <html>
    {{>head}}
    <body>
-      <div class="container">{{{body}}}</div>
-      {{>scripts}}
+      <div class="container-fluid">{{{body}}}</div>
+      <div class="container-fluid">
+      {{#if test}}
+         <hr>
+
+         <div class="well well-sm">{{>scripts}}</div>
+      {{/if}}
+      </div>
    </body>
 </html>
