@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   //res.send('respond with a resource');
   res.render('listings', {
     title: 'Listings',
+    pageTestScript: '/qa/tests-listings.js',
     showTests: req.query.test
   });
 

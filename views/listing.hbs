@@ -1,2 +1,19 @@
-<h1>{{title}}</h1>
-<p class="lead">Shows an item's details</p>
+<h1>{{title}}<small>
+{{#if showTests}}
+   <a href="/listing">(hide tests)</a>
+{{else}}
+   <a href="/listing?test=1">(run tests)</a>
+{{/if}}
+</small></h1>
+
+<p class="lead">Shows a listing's details</p>
+
+<ul class="list-unstyled text-center">
+   <li class="pull-left">
+   {{#if showTests}}
+      <a href="/listings?test=1">&laquo;Listings</a>
+   {{else}}
+      <a href="/listings">&laquo;Listings</a>
+   {{/if}}
+   </li>
+</ul>
