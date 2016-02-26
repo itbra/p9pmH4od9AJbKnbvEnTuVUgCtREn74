@@ -1,18 +1,30 @@
 "use strict";
 
 var express = require('express'),
+    query   = require('querystring'),
     router  = express.Router();
 
-/* GET home page. */
+/* GET index page. */
 router.get('/', function(req, res) {
-  //res.send('respond with a resource');
+  /* var query2 = req.url.match(/\?/) ? req.url.split('?').pop() : '';
+      query2 = query2.length ? '?' + query2 : query2; */
+
   res.render('index', {
     title: 'Home',
-    url: req.url,
-    query: req.query,
-    queryJSON: JSON.stringify(req.query),
+    debug: req.query.debug,
     test: req.query.test,
-    pageTestScript: '/qa/tests-index.js'
+    pageTestScript: '/qa/tests-index.js',
+    url: {
+      protocol:  req.protocol,
+      host:      req.host,
+      port:      req.port,
+      path:      req.path,
+      url:       req.url,
+      origURL:   req.originalURL,
+      route:     req.route || req.url,
+      queryJSON: JSON.stringify(req.query),
+      query:     query.stringify(req.query)
+    }
   });
 });
 
