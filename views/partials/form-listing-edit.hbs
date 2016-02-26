@@ -1,0 +1,27 @@
+<form action="/listings" method="post" name="form" class="Xform-horizontalX" id="listings-form" enc$
+   <div class="hf"></div>
+   <fieldset>
+      <legend>Edit-Form</legend>
+      <div class="form-group">
+         <label for="title">Title</label>
+         <input type="text" class="form-control" name="title" value="" id="listing-title" placehold$
+      </div>
+      <div class="form-group">
+        <label for="listing-tagline">Tagline</label>
+        <input type="text" class="form-control" name="tagline" value="" id="listing-tagline" placeh$
+      </div>
+      <div class="form-group">
+        <label for="listing-description">Description</label>
+        <textarea class="form-control" name="description" id="listing-description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="listing-picture">Picture</label>
+        <input type="file" name="picture" id="listing-picture">
+        <p class="help-block">Example block-level help text here.</p>
+      </div>
+
+      {{!-- <a href="/listings/{{#if this.url.query}}?{{this.url.query}}{{/if}}" class="btn btn-cancel btn-default">Abort</a> --}}
+      <a href="{{this.url.referer}}" class="btn btn-cancel btn-default">Abort</a>
+      <button type="submit" class="btn btn-submit btn-primary">Submit</button>
+   </fieldset>
+</form>
