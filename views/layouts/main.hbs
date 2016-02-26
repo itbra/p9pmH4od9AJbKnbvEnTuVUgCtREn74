@@ -1,23 +1,25 @@
 <!Doctype html>
 <html>
+<head>
    {{>head}}
-   <body>
-      {{#if debug}}
-      <div class="container-fluid">
-         <div class="well well-sm">{{>debug}}</div>
-         <hr>
-      </div>
-      {{/if}}
+</head>
+<body>
+   {{#if debug}}
+   <div class="container-fluid">
+      <div class="well well-sm">{{>debug}}</div>
+      <hr>
+   </div>
+   {{/if}}
 
-      <div class="container-fluid">{{{body}}}</div>
+   <div class="container-fluid">{{{body}}}</div>
       
-      <div>{{>scripts}}</div>
+   <div>{{>scripts}}</div>
 
-      {{#if test}}
-      <div class="container-fluid">
-         <hr>
-         <div class="well well-sm">{{>tests}}</div>
-      </div>
-      {{/if}}
-   </body>
+   {{#if test}}
+   <div class="container-fluid">
+      <hr>
+      <div class="well well-sm">{{>tests}}</div>
+   </div>
+    {{/if}}
+</body>
 </html>
