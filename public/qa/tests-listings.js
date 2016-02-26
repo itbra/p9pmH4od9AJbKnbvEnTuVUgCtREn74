@@ -8,7 +8,7 @@
       });
 
       test('has link to "Listing" page', function() {
-          assert( $('a[href="/listing"], a[href^="/listing?"], a[href="/listing/"], a[href^="/listing/?"]').length );
+          assert( $('a[href^="/listing/"]').length );
       });
 
   });
