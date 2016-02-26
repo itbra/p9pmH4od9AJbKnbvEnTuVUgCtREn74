@@ -1,11 +1,13 @@
 <h1>{{this.title}}
    <small>
-      <a href="/listings{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop{{else}}start{{/if}} tests)</a> |
-      <a href="/listings{{#unless this.debug}}?debug=1{{/unless}}">({{#if this.debug}}hide{{else}}show{{/if}} debug)</a>
+      <a href="/listings{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop {{/if}}Test)</a>{{!-- |
+      <a href="/listings{{#unless this.debug}}?debug=1{{/unless}}">({{#if this.debug}}hide {{/if}}Debug)</a> --}}
    </small>
 </h1>
 
 <p class="lead">{{#if this.data.listings}}Here are your listings.{{else}}Shows a list of available items.{{/if}}</p>
+
+<a href="/listing/add/{{#if this.url.query}}?{{this.url.query}}{{/if}}" class="btn btn-mini">+</a>
 
 {{#if this.data.listings}}
    <ul class="list-unstyled">
@@ -16,8 +18,9 @@
    {{/unless}}
 
    {{#each listings}}
-      <li>
-         <a href="/listing/{{this.id}}/{{this.alias}}/{{#if ../../../this.url.query}}?{{../../../this.url.query}}{{/if}}">{{this.title}}</a>
+      <li>{{this.title}} |
+         <a href="/listing{{this.url.base}}">Details</a> |
+         <a href="/listing{{this.url.edit}}">Edit</a>
       </li>
    {{/each}}
    {{/with}}
@@ -27,7 +30,9 @@
 {{/if}}
 
 <ul class="list-unstyled text-center">
+   {{#unless showForm}}
    <li class="pull-left">
-      <a href="/{{#if this.url.query}}?{{this.url.query}}{{/if}}">&laquo;Home</a>
+      <a href="/{{#if this.url.query}}?{{this.url.query}}{{/if}}">&laquo;back Home</a>
    </li>
+   {{/unless}}
 </ul>

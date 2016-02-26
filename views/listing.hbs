@@ -1,12 +1,15 @@
+{{#unless showForm}}
 {{#if this.data.listing}}
+
 <h1>{{this.data.listing.title}}
    <small>
-      <a href="/listing{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop{{else}}start{{/if}} tests)</a> |
-      <a href="/listing{{#unless this.debug}}?debug=1{{/unless}}">({{#if this.debug}}hide{{else}}show{{/if}} debug)</a>
+      <a href="/listing{{this.data.listing.url.edit}}">(Edit</a> |
+      <a href="/listing{{#unless this.test}}?test=1{{/unless}}">{{#if this.test}}stop {{/if}}Test)</a>{{!-- |
+      <a href="/listing{{#unless this.debug}}?debug=1{{/unless}}">{{#if this.debug}}hide {{/if}}Debug</a> --}}
    </small>
 </h1>
 
-<p class="lead">Here come the details</p>
+{{!-- <p class="lead">Here come the details</p> --}}
 
 <dl class="dl-horizontal">
 {{#each this.data.listing}}
@@ -16,17 +19,35 @@
 </dl>
 
 {{else}}
-<h1>{{this.title}}
+
+{{!--
+<h1>No such listing
    <small>
-      <a href="/listing{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop{{else}}start{{/if}} tests)</a>
+      <a href="/listing{{#unless this.test}}?test=1{{/unless}}">({{#if this.test}}stop {{/if}}Test)</a>
+      <a href="/listing{{#unless this.debug}}?debug=1{{/unless}}">({{#if this.debug}}hide {{/if}}Debug)</a>
    </small>
 </h1>
 
-<p class="lead">Shows a listing's details.</p>
+<p class="lead">
+   <a href="/listings/add/{{#if this.url.query}}{{this.url.query}}{{/if}}">Create listing &raquo;</a>
+</p>
+--}}
+
+{{/if}}
+{{/unless}}
+
+{{#if showForm}}
+   {{#compare this.form.name add}}
+     {{>form-listing-add}}
+   {{/compare}}
+
+   {{#compare this.form.name edit}}
+     {{>form-listing-edit}}
+   {{/compare}}
 {{/if}}
 
 <ul class="list-unstyled text-center">
    <li class="pull-left">
-      <a href="/listings/{{#if this.url.query}}?{{this.url.query}}{{/if}}">&laquo;Listings</a>
+      <a href="/listings/{{#if this.url.query}}?{{this.url.query}}{{/if}}">&laquo;back to Listings</a>
    </li>
 </ul>
