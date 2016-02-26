@@ -7,37 +7,36 @@ var bodyParser   = require('body-parser');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(function(req, res) {
-//  res.locals.test = app.get('env') !== 'production' && req.query.test === '1';
-//});
+/* app.use(function(req, res) {
+  res.locals.test = app.get('env') !== 'production' && req.query.test === '1';
+}); */
 
 // view engine setup
-var exphbs   = require('express-secure-handlebars');
+var exphbs       = require('express-secure-handlebars');
 app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// logger setup
 app.use(logger('dev'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
+// parser setup
 app.use(cookieParser());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// define routes
-//var routes   = require('./routes/index');
-//var listings = require('./routes/listings');
-//var listing  = require('./routes/listing');
-
+// routes setup
 app.use('/',         require('./routes/index'));
-app.use('/listings', require('./routes/listings'));
 app.use('/listing',  require('./routes/listing'));
+app.use('/listings', require('./routes/listings'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+  "use strict";
+
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -49,17 +48,24 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
+    "use strict";
+
     res.status(err.status || 500);
-    res.render('error', {
+    /* res.render('error', {
       message: err.message,
       error: err
-    });
+    }); */
+
+    // by me: send error to keep us away from blank pages
+    res.send(err.message);
   });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
+  "use strict";
+
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
