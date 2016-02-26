@@ -5,11 +5,7 @@ var favicon      = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 
-var routes   = require('./routes/index');
-var listings = require('./routes/listings');
-var listing  = require('./routes/listing');
-
-var app      = express();
+var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(function(req, res) {
 //  res.locals.test = app.get('env') !== 'production' && req.query.test === '1';
@@ -31,10 +27,14 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// map routes
-app.use('/', routes);
-app.use('/listings', listings);
-app.use('/listing',  listing);
+// define routes
+//var routes   = require('./routes/index');
+//var listings = require('./routes/listings');
+//var listing  = require('./routes/listing');
+
+app.use('/',         require('./routes/index'));
+app.use('/listings', require('./routes/listings'));
+app.use('/listing',  require('./routes/listing'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
