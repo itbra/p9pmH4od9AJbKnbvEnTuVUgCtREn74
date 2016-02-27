@@ -47,13 +47,13 @@ if (app.get('env') === 'development') {
     "use strict";
 
     res.status(err.status || 500);
-    /* res.render('error', {
+    res.render('error', {
       message: err.message,
       error: err
-    }); */
+    });
 
     // by me: send error to keep us away from blank pages
-    res.send(err.message);
+    // res.send(err.message);
   });
 }
 
