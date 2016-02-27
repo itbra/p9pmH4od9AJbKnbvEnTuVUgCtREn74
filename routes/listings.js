@@ -8,8 +8,6 @@ var dataProvider = require('../lib/dataprovider/listings.js'),
 /* GET listings. */
 router.get('/', function(req, res) {
   var listings = dataProvider.getListings();
-  var urlQuery = req.query ? query.stringify(req.query) : '';
-      urlQuery = urlQuery.length > 1 ? '?' + urlQuery : '';
 
   res.render('listings', {
     title: 'Listings',
@@ -17,10 +15,11 @@ router.get('/', function(req, res) {
     test:  req.query.test,
     pageTestScript: '/qa/tests-listings.js',
     url: {
+      host:  req.host,
       path:  req.path,
       url:   req.url,
       route: req.route || req.url,
-      query: urlQuery
+      query: query.stringify(req.query)
     },
     data: {
       listings: listings
