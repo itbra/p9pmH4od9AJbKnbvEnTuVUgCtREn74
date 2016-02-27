@@ -1,0 +1,26 @@
+<h5>Debug Output</h5>
+<p><code>test:           <%= typeof test %>, <% test %></code></p>
+<p><code>debug:          <%= typeof debug %>, <% debug %></code></p>
+
+<% if (typeof url !== 'undefined') { %>
+   <hr>
+   <p><code>url.proto:   <%= url.protocol %></code></p>
+   <p><code>url.host:    <%= url.host %></code></p>
+   <p><code>url.port:    <%= url.port %></code></p>
+   <p><code>url.path:    <%= url.path %></code></p>
+   <p><code>url.url:     <%= url.url %></code></p>
+   <p><code>url.query:   <%= url.query %></code></p>
+   <p><code>url.referer: <%= url.referer %></code></p>
+
+   <% if (false) { %>
+   <p><code>origURL:     <%= url.origURL %></code></p>
+   <p><code>queryJSON:   <%= url.queryJSON %></code></p>
+   <% } %>
+<% } %>
+
+<% if (typeof data !== 'undefined') { %>
+   <hr>
+   <% if (false) { %>
+   <p><code>data:        <%= dataJSON %></code></p>
+   <% } %>
+<% } %>

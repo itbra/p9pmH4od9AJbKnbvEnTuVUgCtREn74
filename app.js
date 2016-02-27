@@ -7,15 +7,13 @@ var bodyParser   = require('body-parser');
 
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
-/* app.use(function(req, res) {
-  res.locals.test = app.get('env') !== 'production' && req.query.test === '1';
-}); */
+
+// define globals
+app.locals.site = 'Lotti-Karotti';
 
 // view engine setup
-var exphbs       = require('express-secure-handlebars');
-app.engine('hbs', exphbs({defaultLayout: 'main', extname: '.hbs'}));
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'ejs');
 
 // logger setup
 app.use(logger('dev'));
@@ -29,9 +27,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes setup
-app.use('/',         require('./routes/index'));
-app.use('/listing',  require('./routes/listing'));
-app.use('/listings', require('./routes/listings'));
+app.use('/', require('./routes/index'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

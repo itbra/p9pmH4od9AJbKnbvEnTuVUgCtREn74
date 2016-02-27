@@ -1,13 +1,15 @@
 <!-- Test frameworks (Chai, Mocha, etc) -->
-{{#if test}}
+<% if (test) { %>
    <div id="mocha"></div>
 
    <script src="/vendor/chai.js"></script>
    <script src="/vendor/mocha.js"></script>
    <script>var assert = chai.assert; mocha.ui('tdd');</script>
    <script src="/qa/tests-global.js?v=1.0"></script>
-   {{#if pageTestScript}}
-       <script src="{{pageTestScript}}"></script>
-   {{/if}}
+
+   <% if (pageTestScript) { %>
+       <script src="<%= pageTestScript %>"></script>
+   <% } %>
+
    <script>mocha.run();</script>
-{{/if}}
+<% } %>
