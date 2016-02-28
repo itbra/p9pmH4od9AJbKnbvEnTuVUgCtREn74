@@ -7,6 +7,8 @@
   }
 
   jQuery(function($) {
-    console.info("jQuery is there for you!");
+    // console.info("jQuery is there for you!");
+
+	$("a[rel^='lightbox']").simpleLightbox();
   });
 }());
