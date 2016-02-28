@@ -3,7 +3,7 @@
 <head>
    <% include partials/template/head.ejs %>
 </head>
-<body>
+<body style="background:#444; color:#ededed">
    <% if (debug) { %>
    <div class="container-fluid">
       <div class="well well-sm"><% include partials/template/debug.ejs %></div>
@@ -11,11 +11,21 @@
    </div><!-- /container -->
    <% } %>
 
-   <div class="container-fluid">
-      <% include home.ejs %>
-   </div><!-- /container -->
-      
-   <div><% include partials/template/scripts.ejs %></div>
+   <header class="container-fluid">
+      <% include partials/template/header.ejs %>
+   </header><!-- /header -->
+
+   <main class="container-fluid">
+      <% include images.ejs %>
+   </main><!-- /container -->
+
+   <footer class="container-fluid">
+      <% include partials/template/footer.ejs %>
+   </footer><!-- /footer -->
+
+   <div class="scripts">
+      <% include partials/template/scripts.ejs %>
+   </div><!-- /scripts -->
 
    <% if (test) { %>
    <div class="container-fluid">
