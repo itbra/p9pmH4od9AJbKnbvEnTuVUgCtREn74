@@ -1,2 +1,11 @@
-<h1>Error <%= err.code || '' %></h1>
-<%= message %>
+<% if (error && error.code) { %>
+<h1>Error <%= error.code %></h1>
+<pre>
+   <% if (message) { %>
+   <p><%= message %></p>
+   <% } %>
+   <p><%= error.stack %></p>
+</pre>
+<% } else { %>
+<h1>Unspecified Error</h1>
+<% } %>
