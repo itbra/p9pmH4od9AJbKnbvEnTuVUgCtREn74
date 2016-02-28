@@ -59,6 +59,8 @@ thumbs.db
 .directory
 *~
 
+cache
+
 # Never ignore #
 # Only apply this rule to the main repository's gitignore files
 !/.gitignore
