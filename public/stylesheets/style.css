@@ -7,7 +7,20 @@ a {
   color: #00B7FF;
 }
 
-a.thumbnail {
+.sr-only {
+	display: none;
+	height: 0;
+	width: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 0;
+	line-height: 0;
+	opacity: 0;
+	top: -9999px;
+	left: -9999px;
+}
+
+.thumbnail {
   text-decoration: none !important;
 }
 
@@ -17,19 +30,63 @@ a.thumbnail {
   text-overflow: ellipsis;
 }
 
-.thumbnail > img + .overlay {
+.thumbnail > :first-child + .overlay {
   position: absolute;
 }
 
-.thumbnail > img + .overlay > div {
+.thumbnail > :first-child + .overlay > div {
   position: relative;
   width: inherit;
   height: inherit;
 }
 
-.thumbnail > img + .overlay > div > i {
+.thumbnail > :first-child + .overlay > div > i {
   position: absolute;
   top: 10px;
   right: 10px;
   color: rgba(255, 255, 255, 1);
+}
+
+.thumbnail > .video{
+  display: block;
+	padding-left: 15px;
+}
+.thumbnail.video {
+  padding-bottom: 0;
+}
+
+.video {
+  position: relative;
+}
+.video.loading + .overlay {
+  background: rgba(0,0,0,0);
+}
+
+.video > .status {
+  position: absolute;
+	width: 100%;
+	top: 45%;
+	left: 0;
+	text-align: center;
+  color: #fff
+}
+
+.overlay-icons {
+  color: #fff
+}
+
+.overlay-icons .player-toggles {
+  display: inline-block;
+	margin-top: 40%;
+	width: 100%;
+}
+
+.overlay-icons .player-toggle {
+  font-size: 3em;
+	text-align: center;
+  opacity: .5
+}
+
+.overlay-icons:hover .player-toggle {
+  opacity: 1
 }

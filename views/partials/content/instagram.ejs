@@ -5,8 +5,9 @@
    <% data.instagram.media.forEach(function(item) { %>
       <% if (item.user && item.user.username === 'annika_knaeckebrot') { %>
       <div class="col-sm-6 col-md-3">
+
          <% if (item.type === 'image') { %>
-	     <a href="<%= item.images.standard_resolution.url %>" class="thumbnail" rel="lightbox" title="" data-media-type="<%= item.type %>" data-media-icon="camera">
+	     <a href="<%= item.images.standard_resolution.url %>" class="thumbnail image" rel="lightbox" title="" data-media-type="<%= item.type %>" data-media-icon="camera">
 		    <img src="<%= item.images.low_resolution.url %>" alt="Lotti-Karotti">
             <% if (data.instagram.showCaption) { %>
 			<div class="caption">
@@ -21,8 +22,18 @@
 			</div>
             <% } %>
 		 </a>
+
          <% } else if (item.type === 'video') { %>
-	     <a href="javascript:;" class="thumbnail" class="thumbnail" rel="" title="" data-media-type="<%= item.type %>" data-media-icon="video-camera">
+
+	     <a href="javascript:;" class="thumbnail video" data-toggle="play" data-target="#<%= item.id %>" title="" data-media-type="<%= item.type %>" data-media-icon="video-camera">
+			<div class="video loading">
+			   <div class="status">Loading...</div>
+			   <video width="320" height="319" id="<%= item.id %>">
+  			     <source src="<%= item.videos.low_bandwidth.url %>" type="video/mp4"><code>Dieser Browser unterst&uuml;tzt keine Videowiedergabe.</code>
+			   </video>
+			</div>
+           
+		   <% if (false) { %>
 		    <img src="<%= item.images.low_resolution.url %>" alt="Lotti-Karotti">
             <% if (data.instagram.showCaption) { %>
 			<div class="caption">
@@ -36,11 +47,15 @@
 			   <!-- p class="caption-media-date"><%= item.caption.created_time %></p -->
 			</div>
             <% } %>
+            <% } %>
 		 </a>
+
          <% } else { %>
+
 	     <div class="thumbnail" rel="" title="">
 		    <div>Undefined Media Type</div>
 		 </div>
+
          <% } %>
 	  </div>
       <% } %>
