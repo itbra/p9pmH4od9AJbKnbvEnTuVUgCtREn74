@@ -8,27 +8,32 @@ var bodyParser   = require('body-parser');
 var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
-// define globals
-app.locals.site = 'Lotti-Karotti';
-
 // view engine setup
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// view globals
+
+app.locals.site = 'Lotti-Karotti';
+
 // logger setup
+
 app.use(logger('dev'));
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // parser setup
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // routes setup
-//app.use('/',       require('./routes/index'));
-//app.use('/images', require('./routes/images'));
+
+// app.use('/',       require('./routes/index'));
+// app.use('/images', require('./routes/images'));
 app.use('/', require('./routes/images'));
 
 // catch 404 and forward to error handler
@@ -55,7 +60,7 @@ if (app.get('env') === 'development') {
     });
 
     // by me: send error to keep us away from blank pages
-    // res.send(err.message);
+    // res.end(err.message);
   });
 }
 
@@ -69,6 +74,9 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+
+  // by me: send error to keep us away from blank pages
+  // res.end(err.message);
 });
 
 module.exports = app;
