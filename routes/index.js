@@ -7,7 +7,7 @@ var express   = require('express'),
 /* GET index page. */
 router.get('/', function (req, res) {
   var params = {
-    title: 'Home',
+    title: '',
     body: 'partials/pages/home.ejs',
     debug: req.query.debug,
     test: req.query.test,

@@ -1,4 +1,4 @@
-<h1><%= title %>
+<h1><%= site %><% if (title) { %> / <%= title %><% } %>
    <% if (allowTestDebug) { %>
    <small>
       <a href="/<% if (!test)  { %>?test=1<%  } %>">(<% if (test)  { %>stop <% } %>Test</a> |
@@ -6,4 +6,5 @@
    </small>
    <% } %>
 </h1>
+<hr>
 <p class="lead">Everything starts right here, bud!</p>
