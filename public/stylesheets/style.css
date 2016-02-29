@@ -6,3 +6,30 @@ body {
 a {
   color: #00B7FF;
 }
+
+a.thumbnail {
+  text-decoration: none !important;
+}
+
+.thumbnail > .caption {
+  height: 8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumbnail > img + .overlay {
+  position: absolute;
+}
+
+.thumbnail > img + .overlay > div {
+  position: relative;
+  width: inherit;
+  height: inherit;
+}
+
+.thumbnail > img + .overlay > div > i {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: rgba(255,255,255,1);
+}
