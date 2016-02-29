@@ -10,13 +10,8 @@
     $(document)
     // Prevent users from saving images
       .on('contextmenu', '.thumbnail', function (evt) {
-        //alert('Es ist nicht erlaubt, Bilder zu speichern!');
-        //return false;
-      })
-      // Prevent users from saving images
-      .on('click', '[data-media-type="video"]', function (evt) {
-        //alert('Videofunktion noch nicht integriert');
-        //return false;
+        alert('Es ist nicht erlaubt, Bilder zu speichern!');
+        return false;
       })
       .find('.thumbnail')
       .each(function () {
@@ -25,28 +20,30 @@
 
         $this
         .queue(function (next) {
-          $img.after(
-            $('<div/>', {
-              class: 'overlay',
-              css: {
-                top: parseInt($this.css('padding-top')) + 1,
-                left: Math.ceil($this.width()) - Math.ceil($img.width()) + parseInt($this.css('padding-left')),
-                width: $img.width() - ($this.is('.video') ? 16 : 0),
-                height: $img.height() - ($this.is('.video') ? 5 : 0)
-              },
-              html: '<div class="overlay-icons">' +
-                       '<i class="fa fa-' + $this.data('mediaIcon') + '"></i>' +
-                       '<div class="player-toggles">' +
-                          '<div class="player-toggle pause" style="display:none">' +
-                             '<i class="fa fa-pause"></i>' +
-                          '</div>' +
-                          '<div class="player-toggle play" style="display:none">' +
-                             '<i class="fa fa-play"></i>' +
-                          '</div>' +
-                       '</div>' +
-                    '</div>'
-            })
-          );
+          if ($this.is('.video')) {
+            $img.after(
+              $('<div/>', {
+                class: 'overlay',
+                css: {
+                  top: parseInt($this.css('padding-top')) + 1,
+                  left: Math.ceil($this.width()) - Math.ceil($img.width()) + parseInt($this.css('padding-left')),
+                  width: $img.width() - ($this.is('.video') ? 16 : 0),
+                  height: $img.height() - ($this.is('.video') ? 5 : 0)
+                },
+                html: '<div class="overlay-icons">' +
+                         '<i class="fa fa-' + $this.data('mediaIcon') + '"></i>' +
+                         '<div class="player-toggles">' +
+                            '<div class="player-toggle pause" style="display:none">' +
+                               '<i class="fa fa-pause"></i>' +
+                            '</div>' +
+                            '<div class="player-toggle play" style="display:none">' +
+                               '<i class="fa fa-play"></i>' +
+                            '</div>' +
+                         '</div>' +
+                      '</div>'
+              })
+            );
+          }
 
           next();
         });
