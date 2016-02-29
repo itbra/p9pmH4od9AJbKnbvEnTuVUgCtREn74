@@ -1,8 +1,0 @@
-<h1><%= title %>
-   <small>
-      <a href="/<% if (!test)  { %>?test=1<%  } %>">(<% if (test)  { %>stop <% } %>Test</a> |
-      <a href="/<% if (!debug) { %>?debug=1<% } %>"><% if (debug) { %>hide <% } %>Debug)</a>
-   </small>
-</h1>
-   
-<% include partials/content/instagram.ejs %>
