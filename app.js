@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 
 // view globals
 
-app.locals.site = 'Lotti-Karotti';
+app.locals.site = 'Lotti the Havanese';
 
 // logger setup
 
