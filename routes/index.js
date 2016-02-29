@@ -5,23 +5,22 @@ var express   = require('express'),
     router    = express.Router();
 
 /* GET index page. */
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
   var params = {
     title: 'Home',
-	body: 'partials/pages/home.ejs',
+    body: 'partials/pages/home.ejs',
     debug: req.query.debug,
-    test:  req.query.test,
+    test: req.query.test,
     pageTestScript: '/qa/tests-index.js',
-	allowTestDebug: express().get('env') === 'development',
+    allowTestDebug: express().get('env') === 'development',
     url: {
-      host:  req.host,
-      path:  req.path,
-      url:   req.url,
+      host: req.host,
+      path: req.path,
+      url: req.url,
       route: req.route || req.url,
       query: query.stringify(req.query)
     },
-    data: {
-    }
+    data: {}
   };
 
   res.render('index', params);
