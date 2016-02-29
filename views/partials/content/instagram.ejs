@@ -5,10 +5,9 @@
    <% data.instagram.media.forEach(function(item) { %>
       <% if (item.user && item.user.username === 'annika_knaeckebrot') { %>
       <div class="col-sm-6 col-md-3">
-
          <% if (item.type === 'image') { %>
 	     <a href="<%= item.images.standard_resolution.url %>" class="thumbnail image" rel="lightbox" title="" data-media-type="<%= item.type %>" data-media-icon="camera">
-		    <img src="<%= item.images.low_resolution.url %>" alt="Lotti-Karotti">
+		    <img src="<%= item.images.low_resolution.url %>" alt="Picture of Lotti">
             <% if (data.instagram.showCaption) { %>
 			<div class="caption">
 			   <h5 class="caption-title"></h5>
@@ -17,14 +16,10 @@
 				  <%= item.caption.text.substr(0, item.caption.text.indexOf('#')-1).replace(/\?{2,}/g, '').trim() %>
 	           </p>
 			   <% } %>
-			   <!-- p class="caption-media-owner"><%= item.caption.full_name %></p -->
-			   <!-- p class="caption-media-date"><%= item.caption.created_time %></p -->
 			</div>
             <% } %>
 		 </a>
-
          <% } else if (item.type === 'video') { %>
-
 	     <a href="javascript:;" class="thumbnail video" data-toggle="play" data-target="#<%= item.id %>" title="" data-media-type="<%= item.type %>" data-media-icon="video-camera">
 			<div class="video loading">
 			   <div class="status">Loading...</div>
@@ -32,30 +27,11 @@
   			     <source src="<%= item.videos.low_bandwidth.url %>" type="video/mp4"><code>Dieser Browser unterst&uuml;tzt keine Videowiedergabe.</code>
 			   </video>
 			</div>
-           
-		   <% if (false) { %>
-		    <img src="<%= item.images.low_resolution.url %>" alt="Lotti-Karotti">
-            <% if (data.instagram.showCaption) { %>
-			<div class="caption">
-			   <h5 class="caption-title"></h5>
-			   <% if (item.caption.text) { %>
-			   <p class="caption-text">
-				  <%= item.caption.text.substr(0, item.caption.text.indexOf('#')-1).replace(/\?{2,}/g, '').trim() %>
-	           </p>
-			   <% } %>
-			   <!-- p class="caption-media-owner"><%= item.caption.full_name %></p -->
-			   <!-- p class="caption-media-date"><%= item.caption.created_time %></p -->
-			</div>
-            <% } %>
-            <% } %>
 		 </a>
-
          <% } else { %>
-
 	     <div class="thumbnail" rel="" title="">
 		    <div>Undefined Media Type</div>
 		 </div>
-
          <% } %>
 	  </div>
       <% } %>
