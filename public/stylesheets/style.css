@@ -84,7 +84,7 @@ a {
 .overlay-icons .player-toggle {
   font-size: 3em;
 	text-align: center;
-  opacity: .5
+  opacity: .75
 }
 
 .overlay-icons:hover .player-toggle {
