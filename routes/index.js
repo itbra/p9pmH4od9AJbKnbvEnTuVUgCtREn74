@@ -6,11 +6,13 @@ var express   = require('express'),
 
 /* GET index page. */
 router.get('/', function(req, res) {
-  res.render('index', {
+  var params = {
     title: 'Home',
+	body: 'partials/pages/home.ejs',
     debug: req.query.debug,
     test:  req.query.test,
     pageTestScript: '/qa/tests-index.js',
+	allowTestDebug: express().get('env') === 'development',
     url: {
       host:  req.host,
       path:  req.path,
@@ -20,7 +22,9 @@ router.get('/', function(req, res) {
     },
     data: {
     }
-  });
+  };
+
+  res.render('index', params);
 });
 
 module.exports = router;
