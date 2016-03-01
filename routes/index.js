@@ -5,7 +5,7 @@ var express   = require('express'),
     router    = express.Router();
 
 /* GET index page. */
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
   var params = {
     title: '',
     body: 'partials/pages/home.ejs',

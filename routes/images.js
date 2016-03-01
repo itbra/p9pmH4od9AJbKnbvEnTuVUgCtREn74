@@ -46,14 +46,14 @@ var render = function (view, data, req, res) {
   res.render('index', params);
 };
 
-router.get('/', function (req, res) {
+router.get('/', function (req, res, next) {
   if (req.query.update !== 1) {
     try {
       //FIXME - add check for path to file and file or app won't render
       var data = require('../lib/dataprovider/instagram/cache/media_recent.json');
-      render('images', data, req, res);
+      render('images', data, req, res, next);
     } catch (err) {
-      render('error', err, req, res);
+      render('error', err, req, res, next);
     }
   } else {
     instagram
@@ -62,11 +62,10 @@ router.get('/', function (req, res) {
         max_tag_id: '1009339832512162313'
     }, function (err, media, pagination, api_requests_left, api_requests_limit) {
       if (err !== null) {
-        // render('error', err, req, res);
+        // render('error', err, req, res, next);
         res.send(err);
       } else {
-        // render('images', media, req, res);
-        //res.send(media);
+        // render('images', media, req, res, next);
         res.send({pagination: pagination, media: media});
       }
     });
