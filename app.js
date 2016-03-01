@@ -23,10 +23,23 @@ app.locals.site = 'Lotti the Havanese';
 if (app.get('env') === 'development') {
   app.use(logger('dev'));
 } else {
-  // create a write stream (in append mode)
-  var accessLogStream = require('fs').createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});
+  var fs         = require('fs'),
+      logFolder  = __dirname + '/logs',
+      logFile    = logFolder + '/access.log',
+      logRotator = require('file-stream-rotator');
 
-  app.use(logger('combined', {stream: accessLogStream}));
+  // ensure log directory exists
+  fs.existsSync(logFolder) || fs.mkdirSync(logFolder);
+
+  // create a rotating write stream
+  var logWriter  = logRotator.getStream({
+    date_format: 'YYYYMMDD',
+    filename: logFolder + '/access-%DATE%.log',
+    frequency: 'daily',
+    verbose: false
+  });
+
+  app.use(logger('combined', {stream: logWriter}));
 }
 
 // device detection setup
