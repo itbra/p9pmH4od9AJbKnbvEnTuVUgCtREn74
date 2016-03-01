@@ -47,10 +47,9 @@ var render = function (view, data, req, res) {
 };
 
 router.get('/', function (req, res) {
-  // res.end(JSON.stringify(req.headers));
-
   if (req.query.update !== 1) {
     try {
+      //FIXME - add check for path to file and file or app won't render
       var data = require('../lib/dataprovider/instagram/cache/media_recent.json');
       render('images', data, req, res);
     } catch (err) {
