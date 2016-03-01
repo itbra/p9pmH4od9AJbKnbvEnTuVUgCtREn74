@@ -20,7 +20,18 @@ app.locals.site = 'Lotti the Havanese';
 
 // logger setup
 
-app.use(logger('dev'));
+if (app.get('env') === 'development') {
+  app.use(logger('dev'));
+} else {
+  // create a write stream (in append mode)
+  var accessLogStream = require('fs').createWriteStream(__dirname + '/logs/access.log', {flags: 'a'});
+
+  app.use(logger('combined', {stream: accessLogStream}));
+}
+
+// device detection setup
+
+app.use(device.capture());
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -34,8 +45,9 @@ app.use(bodyParser.urlencoded({extended: false}));
 // routes setup
 
 // app.use('/',       require('./routes/index'));
+app.use('/',          require('./routes/images'));
 // app.use('/images', require('./routes/images'));
-app.use('/', require('./routes/images'));
+app.use('/tellme' ,   require('./routes/tellme'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
