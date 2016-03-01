@@ -74,8 +74,16 @@ a {
   opacity: .75
 }
 
+.video-overlay .player-toggle.play {
+  text-shadow: 0 0 10px rgba(3,3,3,0.5);
+}
+
 .video-overlay-icons:hover .player-toggle {
   opacity: 1
+}
+
+.video-overlay-icons:hover .player-toggle.play {
+  text-shadow: 0 0 10px rgba(3,3,3,0.75);
 }
 
 .video-wrapper {
@@ -103,9 +111,9 @@ a {
 }
 
 @media screen and (min-width: 1200px) {
-  /*body { background-color: #4d4d4d; }*/
+  xbody { background-color: #4d4d4d; }
   .video-overlay .player-toggle {
-    font-size: 4vw;
+    font-size: 2.5vw;
   }
 }
 
@@ -116,9 +124,9 @@ a {
 }
 
 @media screen and (min-width: 992px) and (max-width: 1199px) {
-  /*body { background-color: antiquewhite; }*/
+  xbody { background-color: antiquewhite; }
   .video-overlay .player-toggle {
-    font-size: 3vw;
+    font-size: 2.5vw;
   }
 }
 
@@ -129,39 +137,39 @@ a {
 }
 
 @media screen and (min-width: 768px) and (max-width: 991px) {
-  /*body { background-color: gold; }*/
+  xbody { background-color: gold; }
   .video-overlay .player-toggle {
-    font-size: 6vw;
+    font-size: 4vw;
   }
 }
 
 @media screen and (max-width: 767px) {
-  /*body { background-color: orange; }*/
+  xbody { background-color: orange; }
   .video-overlay .player-toggle {
-    font-size: 7vw;
+    font-size: 5vw;
   }
 }
 
 @media screen and (max-width: 640px) {
-  /*body { background-color: darkorange; }*/
+  xbody { background-color: darkorange; }
   .video-overlay .player-toggle {
-    font-size: 7vw;
+    font-size: 5vw;
   }
 }
 
 @media screen and (max-width: 480px) {
-  /*body { background-color: coral; }*/
+  xbody { background-color: coral; }
 }
 
 @media screen and (max-width: 320px) {
-  /*body { background-color: olive; }*/
+  xbody { background-color: olive; }
   .video-overlay .player-toggle {
     font-size: 5vw;
   }
 }
 
 @media screen and (max-width: 160px) {
-  /*body { background-color: red; }*/
+  xbody { background-color: red; }
   .video-overlay .player-toggle {
     font-size: 5vw;
   }
