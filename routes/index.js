@@ -5,10 +5,11 @@ var express   = require('express'),
     router    = express.Router();
 
 /* GET index page. */
-router.get('/', function (req, res) {
+router.get('/', function (req, res) { 
   var params = {
     title: '',
     body: 'partials/pages/home.ejs',
+    isHbb: req.headers['user-agent'].match(/(hbbtv/mips(el)?)/i),
     debug: req.query.debug,
     test: req.query.test,
     pageTestScript: '/qa/tests-index.js',

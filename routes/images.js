@@ -26,6 +26,9 @@ var render = function (view, data, req, res) {
   var params = {
     title: view.charAt(0).toUpperCase() + view.substr(1),
     body: 'partials/pages/' + view + '.ejs',
+    isHbb: req.headers['user-agent'].match(/hbbtv|mips(el)?/i),
+    isMobile: req.headers['user-agent'].match(/(android|blackberry|ip(ad|od|hone)|j2me|kindle|mobile|mobi|playbook|silk)/i),
+    isTino: req.query.is === 'tino',
     debug: req.query.debug,
     test: req.query.test,
     pageTestScript: '/qa/tests-' + view + '.js',
@@ -44,6 +47,8 @@ var render = function (view, data, req, res) {
 };
 
 router.get('/', function (req, res) {
+  // res.end(JSON.stringify(req.headers));
+
   if (true) {
     try {
       var data = require('../lib/dataprovider/instagram/cache/media_recent.json');

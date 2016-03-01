@@ -1,6 +1,9 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+  background: #5e5e5e;
+  color: #ededed;
 }
 
 a {
@@ -8,20 +11,25 @@ a {
 }
 
 .sr-only {
-	display: none;
-	height: 0;
-	width: 0;
-	margin: 0;
-	padding: 0;
-	font-size: 0;
-	line-height: 0;
-	opacity: 0;
-	top: -9999px;
-	left: -9999px;
+  display: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+  opacity: 0;
+  top: -9999px;
+  left: -9999px;
 }
 
 .thumbnail {
+  position: relative;
   text-decoration: none !important;
+}
+
+.__thumbnail:not(.mobile).loading {
+  background-color: inherit;
 }
 
 .thumbnail > .caption {
@@ -30,63 +38,133 @@ a {
   text-overflow: ellipsis;
 }
 
-.thumbnail > :first-child + .overlay {
+.overlay {
   position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.thumbnail > :first-child + .overlay > div {
+.video-overlay > div {
   position: relative;
   width: inherit;
   height: inherit;
 }
 
-.thumbnail > :first-child + .overlay > div > i {
+.video-overlay > div > i {
   position: absolute;
-  top: 10px;
-  right: 10px;
   color: rgba(255, 255, 255, 1);
 }
 
-.thumbnail > .video{
-  display: block;
-	padding-left: 15px;
-}
-.thumbnail.video {
-  padding-bottom: 0;
-}
-
-.video {
-  position: relative;
-}
-.video.loading + .overlay {
-  background: rgba(0,0,0,1);
-}
-
-.video > .status {
-  position: absolute;
-	width: 100%;
-	top: 45%;
-	left: 0;
-	text-align: center;
+.video-overlay-icons {
   color: #fff
 }
 
-.overlay-icons {
-  color: #fff
-}
-
-.overlay-icons .player-toggles {
+.__video-overlay .player-status {
   display: inline-block;
-	margin-top: 40%;
-	width: 100%;
+  margin-top: 45%;
+  width: 100%;
+  font-size: 150%;
+  text-align: center;
+}
+.__thumbnail.loading .player-status {
+  font-size: 100%;
+  margin-top: 1.25em
 }
 
-.overlay-icons .player-toggle {
-  font-size: 3em;
-	text-align: center;
+.thumbnail.loading .player-status {
+  font-size: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.75);
+  background-image: url('/images/ajax-loader-big.gif');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+}
+
+.video-overlay .player-toggles {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.video-overlay .media-icon.pull-right {
+  margin-top: 8px;
+  margin-right: 10px;
+}
+
+.video-overlay .player-toggle {
+  line-height: 1;
+  margin-top: 45%;
+  text-align: center;
   opacity: .75
 }
 
-.overlay-icons:hover .player-toggle {
+.video-overlay-icons:hover .player-toggle {
   opacity: 1
+}
+
+.video-wrapper {
+  position: relative;
+}
+
+.video-wrapper > .status {
+  position: absolute;
+  width: 100%;
+  top: 45%;
+  left: 0;
+  text-align: center;
+  color: #000
+}
+
+
+
+@media screen and (min-width: 1200px) {
+  /*body { background-color: #4d4d4d; }*/
+
+  .video-overlay .player-toggle { font-size: 4vw; }
+}
+@media screen and (max-width: 1199px) {
+}
+@media screen and (min-width: 992px) {
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  /*body { background-color: antiquewhite; }*/
+
+  .video-overlay .player-toggle { font-size: 3vw; }
+}
+@media screen and (max-width: 991px) {
+}
+@media screen and (min-width: 768px) {
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  /*body { background-color: gold; }*/
+
+  .video-overlay .player-toggle { font-size: 6vw; }
+}
+@media screen and (max-width: 767px) {
+  /*body { background-color: orange; }*/
+
+  .video-overlay .player-toggle { font-size: 7vw; }
+}
+@media screen and (min-width: $screen-xs-min) {
+}
+@media screen and (max-width: 640px) {
+  /*body { background-color: darkorange; }*/
+
+  .video-overlay .player-toggle { font-size: 7vw; }
+}
+@media screen and (max-width: 480px) {
+  /*body { background-color: coral; }*/
+}
+@media screen and (max-width: 320px) {
+  /*body { background-color: olive; }*/
+ 
+  .video-overlay .player-toggle { font-size: 5vw; }
+}
+@media screen and (max-width: 160px) {
+  /*body { background-color: red; }*/
+
+  .video-overlay .player-toggle { font-size: 5vw; }
 }
