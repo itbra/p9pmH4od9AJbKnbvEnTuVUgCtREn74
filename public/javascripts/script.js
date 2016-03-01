@@ -6,22 +6,21 @@
     return;
   }
 
-
   jQuery(function ($) {
-    var setWidthHeight = function(el, ref, callback) {
-      el  = $(el);
+    var setWidthHeight = function (el, ref, callback) {
+      el = $(el);
       ref = $(ref);
 
       el
-      .attr({
-        width:  ref.parents('.thumbnail').width()  - (ref.parents('.thumbnail').width()  - ref.width()),
-        height: ref.parents('.thumbnail').height() - (ref.parents('.thumbnail').height() - ref.height()) - 1,
-      });
+        .attr({
+          width: ref.parents('.thumbnail').width() - (ref.parents('.thumbnail').width() - ref.width()),
+          height: ref.parents('.thumbnail').height() - (ref.parents('.thumbnail').height() - ref.height()) - 1,
+        });
 
       el
-      .parent()
+        .parent()
         .css({
-          'width':  parseInt(el.attr('width')),
+          'width': parseInt(el.attr('width')),
           'height': parseInt(el.attr('height')) + 1,
           'margin-left': Math.floor(ref.parents('.thumbnail').width() - ref.width()) / 2
         });
@@ -31,76 +30,78 @@
       }
     };
 
-    var $media   = $('[data-media-type]'),
-        $images  = $('[data-media-type="image"]'),
-        $videos  = $('[data-media-type="video"]'),
-        $refImg  = $media.first('[data-media-type="image"]').find('> img'),
-        isMobile = $media.first().is('.mobile');
+    var device = $(document).data('device'),
+      $media = $('[data-media-type]'),
+      $images = $('[data-media-type="image"]'),
+      $videos = $('[data-media-type="video"]'),
+      $refImg = $media.first('[data-media-type="image"]').find('> img'),
+      isMobile = $media.first().is('.mobile');
 
     $(document)
     // Prevent users from saving images
-    .on('contextmenu', '.thumbnail', function () {
-      alert('Es ist nicht erlaubt, Bilder zu speichern!');
-      return false;
-    });
+      .on('contextmenu', '.thumbnail', function () {
+        alert('Es ist nicht erlaubt, Bilder zu speichern!');
+        return false;
+      });
 
     // FIXME - use resizestop to prevent the browser from crashing once there's too much content.
     $(window)
-    .on('resize', function (evt) {
-      $videos.each(function() {
-        setWidthHeight( $('video', this), $refImg, function () {
-          if ($('> source', this).attr('src') === '') {
-            $('> source', this).attr({src: $(this).data('src')}).parent().get(0).load();
-          }
-        });
-
-        var $vid = $(this);
-
-        // Fix centering of play/pause toggles
-        $('.player-toggle', this)
-        .queue(function (next) {
-          $(this)
-          .css({
-            'margin-top': ($vid.height() / 2) - (parseInt(window.getComputedStyle( $('> i', this).get(0), null ).fontSize) / 2)
+      .on('resize', function (evt) {
+        $videos.each(function () {
+          setWidthHeight($('video', this), $refImg, function () {
+            if ($('> source', this).attr('src') === '') {
+              $('> source', this).attr({src: $(this).data('src')}).parent().get(0).load();
+            }
           });
 
-          next();
+          var $vid = $(this);
+
+          // Fix centering of play/pause toggles
+          $('.player-toggle', this)
+            .queue(function (next) {
+              $(this)
+                .css({
+                  'margin-top': ($vid.height() / 2) - (parseInt(window.getComputedStyle($('> i', this).get(0), null).fontSize) / 2)
+                });
+
+              next();
+            });
         });
-      });
-    })
-    .trigger('resize');
-    
+      })
+      .trigger('resize');
+
     $('#nummedia').text($media.length);
 
     $media.each(function (idx) {
       var $this = $(this), $img = $('> :first-child', this);
 
-      $('#counter').text(idx);
+      // $('#counter').text(idx);
 
       if ($this.is("a[rel^='lightbox']")) {
         // Update images counter
-        $('#numimg').text( parseInt( $('#numimg').text() ) + 1 );
-        $('#counter').text( parseInt( $('#counter').text() ) + 1 );
+        // $('#numimg').text(parseInt($('#numimg').text()) + 1);
+        // $('#counter').text(parseInt($('#counter').text()) + 1);
 
         $this.simpleLightbox();
       } else {
         if ($this.is('[data-media-type="video"]')) {
-
           // Update video counter
-          $('#numvid').text( parseInt( $('#numvid').text() ) + 1 );
-          $('#counter').text( parseInt( $('#counter').text() ) + 1 );
+          // $('#numvid').text(parseInt($('#numvid').text()) + 1);
+          // $('#counter').text(parseInt($('#counter').text()) + 1);
 
-          var $overlay = $('.video-overlay',  $this),
-              $status  = $('.player-status',  $this),
-              $toggles = $('.player-toggles', $this),
-               $video  = $( $this.data('target') ),
-                video  = $video.get(0) ;
+          var $overlay = $('.video-overlay', $this),
+            $status = $('.player-status', $this),
+            $toggles = $('.player-toggles', $this),
+            $video = $($this.data('target')),
+            video = $video.get(0);
 
-            // Bind to most required events
-            $video
-            .on('loadstart',  function () {})
-            .on('progress',   function () {})
-            .on('abort',      function () {
+          // Bind to most required events
+          $video
+            .on('loadstart', function () {
+            })
+            .on('progress', function () {
+            })
+            .on('abort', function () {
               $('#status').append('Error loading video #' + this.id + '<br>');
             })
             .on('loadeddata', function () {
@@ -113,45 +114,47 @@
 
               $(this).removeAttr('style');
 
-              $('#status').append($('.thumbnail.video').attr('class').replace(/\s?(thumbnail|loading)\s?/ig, '') + ' #' +  this.id + ' loaded<br>');
-          })
-            .on('playing',    function () {})
-            .on('pause',      function () {})
-            .on('ended',      function () {
+              $('#status').append($('.thumbnail.video').attr('class').replace(/\s?(thumbnail|loading)\s?/ig, '') + ' #' + this.id + ' loaded<br>');
+            })
+            .on('playing', function () {
+            })
+            .on('pause', function () {
+            })
+            .on('ended', function () {
               $('.player-toggle.play', $this).find('> i').toggleClass('fa-pause fa-play').end().fadeIn('fast');
             });
 
-            $this
+          $this
             .on('mouseenter', function () {
-              if ( $video.is('.playing') ) {
-                 $('.player-toggle.play', $this).fadeIn('fast');
+              if ($video.is('.playing')) {
+                $('.player-toggle.play', $this).fadeIn('fast');
               }
             })
             .on('mouseleave', function () {
-              if ( $video.is('.playing') ) {
-                 $('.player-toggle.play', $this).fadeOut('fast');
+              if ($video.is('.playing')) {
+                $('.player-toggle.play', $this).fadeOut('fast');
               }
             })
-            .on('click',      function () {
+            .on('click', function () {
               $('.player-toggle', $this).find('> i').toggleClass('fa-play fa-pause');
 
-              if ( $video.is('.playing') ) {
+              if ($video.is('.playing')) {
                 video.pause();
               } else {
                 video.play();
 
                 /* On mobile devices remove the player toggles
-                if ($this.is('.mobile') && $toggles.length) {
-                  $toggles.remove();
+                 if ($this.is('.mobile') && $toggles.length) {
+                 $toggles.remove();
 
-                  $toggles = $('.player-toggles', $this);
-                } */
+                 $toggles = $('.player-toggles', $this);
+                 } */
               }
 
               $video.toggleClass('playing');
             });
-          }
         }
+      }
     });
   });
 }());

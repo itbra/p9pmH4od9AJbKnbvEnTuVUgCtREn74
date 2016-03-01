@@ -49,30 +49,28 @@ var render = function (view, data, req, res) {
 router.get('/', function (req, res) {
   // res.end(JSON.stringify(req.headers));
 
-  if (true) {
+  if (!req.query.update === 1) {
     try {
       var data = require('../lib/dataprovider/instagram/cache/media_recent.json');
       render('images', data, req, res);
     } catch (err) {
       render('error', err, req, res);
     }
-  }
-
-  if (false) {
+  } else {
     instagram
-      .tag_media_recent('lotticarotti', {
+    .tag_media_recent('lotticarotti', {
         //max_tag_id: '1088886084593133660'
         max_tag_id: '1009339832512162313'
-      }, function (err, media, pagination, api_requests_left, api_requests_limit) {
-        if (err !== null) {
-          // render('error', err, req, res);
-          res.send(err);
-        } else {
-          // render('images', media, req, res);
-          //res.send(media);
-          res.send({pagination: pagination, media: media});
-        }
-      });
+    }, function (err, media, pagination, api_requests_left, api_requests_limit) {
+      if (err !== null) {
+        // render('error', err, req, res);
+        res.send(err);
+      } else {
+        // render('images', media, req, res);
+        //res.send(media);
+        res.send({pagination: pagination, media: media});
+      }
+    });
   }
 });
 

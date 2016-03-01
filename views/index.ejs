@@ -6,7 +6,9 @@
 <body>
    <% if (debug) { %>
    <div class="container-fluid">
-      <div class="well well-sm"><% include partials/template/debug.ejs %></div>
+      <div class="well well-sm">
+         <% include partials/template/debug.ejs %>
+      </div>
       <hr>
    </div><!-- /container -->
    <% } %>
@@ -30,7 +32,9 @@
    <% if (test) { %>
    <div class="container-fluid">
       <hr>
-      <div class="well well-sm"><% include partials/template/tests.ejs %></div>
+      <div class="well well-sm">
+         <% include partials/template/tests.ejs %>
+      </div>
    </div><!-- /container -->
    <% } %>
 </body>

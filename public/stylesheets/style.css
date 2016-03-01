@@ -28,10 +28,6 @@ a {
   text-decoration: none !important;
 }
 
-.__thumbnail:not(.mobile).loading {
-  background-color: inherit;
-}
-
 .thumbnail > .caption {
   height: 8em;
   overflow: hidden;
@@ -58,29 +54,6 @@ a {
 
 .video-overlay-icons {
   color: #fff
-}
-
-.__video-overlay .player-status {
-  display: inline-block;
-  margin-top: 45%;
-  width: 100%;
-  font-size: 150%;
-  text-align: center;
-}
-.__thumbnail.loading .player-status {
-  font-size: 100%;
-  margin-top: 1.25em
-}
-
-.thumbnail.loading .player-status {
-  font-size: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255,255,255,0.75);
-  background-image: url('/images/ajax-loader-big.gif');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: center;
 }
 
 .video-overlay .player-toggles {
@@ -118,53 +91,78 @@ a {
   color: #000
 }
 
-
+.thumbnail.loading .player-status {
+  font-size: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  background-image: url('/images/ajax-loader-big.gif');
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: center;
+}
 
 @media screen and (min-width: 1200px) {
   /*body { background-color: #4d4d4d; }*/
-
-  .video-overlay .player-toggle { font-size: 4vw; }
+  .video-overlay .player-toggle {
+    font-size: 4vw;
+  }
 }
+
 @media screen and (max-width: 1199px) {
 }
+
 @media screen and (min-width: 992px) {
 }
+
 @media screen and (min-width: 992px) and (max-width: 1199px) {
   /*body { background-color: antiquewhite; }*/
-
-  .video-overlay .player-toggle { font-size: 3vw; }
+  .video-overlay .player-toggle {
+    font-size: 3vw;
+  }
 }
+
 @media screen and (max-width: 991px) {
 }
+
 @media screen and (min-width: 768px) {
 }
+
 @media screen and (min-width: 768px) and (max-width: 991px) {
   /*body { background-color: gold; }*/
-
-  .video-overlay .player-toggle { font-size: 6vw; }
+  .video-overlay .player-toggle {
+    font-size: 6vw;
+  }
 }
+
 @media screen and (max-width: 767px) {
   /*body { background-color: orange; }*/
+  .video-overlay .player-toggle {
+    font-size: 7vw;
+  }
+}
 
-  .video-overlay .player-toggle { font-size: 7vw; }
-}
-@media screen and (min-width: $screen-xs-min) {
-}
 @media screen and (max-width: 640px) {
   /*body { background-color: darkorange; }*/
-
-  .video-overlay .player-toggle { font-size: 7vw; }
+  .video-overlay .player-toggle {
+    font-size: 7vw;
+  }
 }
+
 @media screen and (max-width: 480px) {
   /*body { background-color: coral; }*/
 }
+
 @media screen and (max-width: 320px) {
   /*body { background-color: olive; }*/
- 
-  .video-overlay .player-toggle { font-size: 5vw; }
+  .video-overlay .player-toggle {
+    font-size: 5vw;
+  }
 }
+
 @media screen and (max-width: 160px) {
   /*body { background-color: red; }*/
-
-  .video-overlay .player-toggle { font-size: 5vw; }
+  .video-overlay .player-toggle {
+    font-size: 5vw;
+  }
 }

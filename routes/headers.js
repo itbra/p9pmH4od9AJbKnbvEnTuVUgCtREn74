@@ -6,7 +6,7 @@ var express   = require('express'),
 
 /* GET index page. */
 router.get('/', function (req, res) {
-  res.set('Content-Type','text/plain');
+  res.set('Content-Type', 'text/plain');
 
   var s = '';
 
