@@ -12,7 +12,7 @@ router.get('/', function(req, res) {
     test: req.query.test,
     pageTestScript: '/qa/tests-index.js',
     url: {
-      host:      req.host,
+      host:      req.hostname,
       path:      req.path,
       url:       req.url,
       route:     req.route || req.url,
