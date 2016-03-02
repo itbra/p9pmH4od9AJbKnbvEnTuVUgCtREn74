@@ -1,11 +1,21 @@
-<% if (error && error.code) { %>
-<h1>Error <%= error.code %></h1>
-<pre>
-   <% if (message) { %>
-   <p><%= message %></p>
-   <% } %>
-   <p><%= error.stack %></p>
-</pre>
+<% if (error) { %>
+
+<h1>Error <%= error.code || error.status || '' %></h1>
+
+<% if (message) { %>
+<p><%= message %></p>
+<% } %>
+
+<% if (error.stack) { %>
+<pre><%= error.stack %></pre>
+<% } %>
+
+<% } else if (message) { %>
+
+<em><%= message %></em>
+
 <% } else { %>
+
 <h1>Internal Server Error</h1>
+
 <% } %>
