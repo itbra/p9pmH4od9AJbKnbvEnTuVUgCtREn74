@@ -15,10 +15,10 @@ router.get('/', function (req, res, next) {
     pageTestScript: '/qa/tests-index.js',
     allowTestDebug: (express().get('env') === 'development'),
     url: {
-      host: req.host,
+      host: req.hostname,
       path: req.path,
       url: req.url,
-      route: (req.route || req.url,
+      route: (req.route || req.url),
       query: query.stringify(req.query)
     },
     data: {}

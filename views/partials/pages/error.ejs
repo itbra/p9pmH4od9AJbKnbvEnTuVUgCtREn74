@@ -1,0 +1,24 @@
+<% if (false) { %>
+<% var error = error || err || {}; %>
+<% if (error.code) { %>
+<h1>Error <%= error.code %></h1>
+<pre>
+   <% if (message) { %>
+   <p><%= message %></p>
+   <% } %>
+   <p><%= error.stack %></p>
+</pre>
+<% } else { %>
+<h1>Internal Server Error</h1>
+<% } %>
+<% } %>
+
+<h1>
+<% try { %>
+   <%= err %>
+<% } catch (ex) { %>
+   <%= ex.message %>
+<% } finally { %>
+   Internal Server Error
+<% } %>
+</h1>

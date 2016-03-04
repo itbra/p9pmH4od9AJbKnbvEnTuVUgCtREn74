@@ -25,7 +25,7 @@ if (app.get('env') === 'development') {
 } else {
   var fs         = require('fs'),
       logFolder  = __dirname + '/logs',
-      logFile    = logFolder + '/access.log',
+      logFile    = logFolder + '/access-%DATE%.log',
       logRotator = require('file-stream-rotator');
 
   // ensure log directory exists
@@ -34,7 +34,7 @@ if (app.get('env') === 'development') {
   // create a rotating write stream
   var logWriter  = logRotator.getStream({
     date_format: 'YYYYMMDD',
-    filename: logFolder + '/access-%DATE%.log',
+    filename: logFile,
     frequency: 'daily',
     verbose: false
   });

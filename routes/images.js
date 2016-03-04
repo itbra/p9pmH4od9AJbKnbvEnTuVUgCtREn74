@@ -20,12 +20,17 @@ instagram.use({
 
 /* GET images page. */
 var render = function (view, data, req, res) {
+//  res.end(JSON.stringify({render: view, with: data}));
+
   view = typeof(view.toLowerCase) === 'function' ? view.toLowerCase() : 'error';
-  data = view === 'error' ? {error: data} : {instagram: {media: data, showCaption: 0}};
+  data = view === 'error' ? data : {instagram: {media: data, showCaption: 0}};
+
+// res.end(JSON.stringify(data));
 
   var params = {
     title: view.charAt(0).toUpperCase() + view.substr(1),
     body: 'partials/pages/' + view + '.ejs',
+//    isHbb: true,
     isHbb: req.headers['user-agent'].match(/hbbtv|mips(el)?/i),
     isMobile: req.headers['user-agent'].match(/(android|blackberry|ip(ad|od|hone)|j2me|kindle|mobile|mobi|playbook|silk)/i),
     isTino: req.query.is === 'tino',
@@ -43,19 +48,55 @@ var render = function (view, data, req, res) {
     data: data
   };
 
-  res.render('index', params);
+  //FIXME 'err' is not defined !
+  if (view === 'error') {
+    params = {
+      message: data.message,
+      error: express().get('env') === 'development' ? err || {} : {}
+    };
+
+    res.status = data.status || 500;
+  }
+
+  view = view !== 'error' ? 'index' : view;
+  
+//  res.end(JSON.stringify({render: view, with: params}));
+  
+  res.render(view, params);
 };
 
 router.get('/', function (req, res, next) {
-  if (req.query.update !== 1) {
-    try {
-      //FIXME - add check for path to file and file or app won't render
-      var data = require('../lib/dataprovider/instagram/cache/media_recent.json');
-      render('images', data, req, res, next);
-    } catch (err) {
-      render('error', err, req, res, next);
-    }
-  } else {
+  if (req.query.update !== '1') {
+    // res.end('Render content from data file.');
+    var fs = require('fs'),
+        file = __dirname + '/../lib/dataprovider/instagram/cache/media_recent.json';
+
+    // Test
+    fs.readFile(file, 'utf8', function (err, data) {
+      if (err) {
+        res.end(err.message);
+      }
+
+      res.end(data);
+    }); 
+
+    // ensure file exists and is readable
+    fs.access(file, fs.R_OK, function (fail) {
+      if (fail) {
+        var err = new Error('Data file not accessable.');
+        err.status  = 404;
+        err.message = 'No data.'; 
+
+        render('error', err, req, res, next);
+      } else {
+        var data = require(file);
+
+        render('images', data, req, res, next);
+      }
+    });
+   } else {
+    res.end('Update data via API.');
+
     instagram
     .tag_media_recent('lotticarotti', {
         //max_tag_id: '1088886084593133660'
